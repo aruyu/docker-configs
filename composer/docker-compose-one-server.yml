@@ -1,0 +1,42 @@
+
+services:
+
+  test_redmine:
+    image: redmine
+    restart: always
+    ports:
+      - 30000:3000
+    networks:
+      - redminedb_net
+    environment:
+      REDMINE_DB_MYSQL: test_mariadb
+      REDMINE_DB_DATABASE: redminedb_001
+      REDMINE_DB_PASSWORD: rroot
+      REDMINE_DB_ENCODING: utf8
+#      REDMINE_NO_DB_MIGRATE: true
+#    volumes:
+#      - /docker/redmine/files:/usr/src/redmine/files
+#      - /docker/redmine/plugins:/usr/src/redmine/plugins
+#      - /docker/redmine/public/themes:/usr/src/redmine/public/themes
+
+  test_mariadb:
+    image: mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - redminedb_net
+    environment:
+      MARIADB_DATABASE: redminedb_001
+      MARIADB_ROOT_PASSWORD: rroot
+    #volumes:
+    #  - /docker/redmine/mysql:/var/lib/mysql
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+
+networks:
+
+  redminedb_net:
+    driver: bridge
