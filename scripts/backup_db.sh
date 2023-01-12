@@ -1,10 +1,10 @@
 #!/bin/bash
 #==
 #   NOTE      - backup_db.sh
-#   Author    - Ista
+#   Author    - Asta
 #
 #   Created   - 2023.01.11
-#   Github    - https://github.com/vine91
+#   Github    - https://github.com/astaos
 #   Contact   - vine9151@gmail.com
 #/
 
