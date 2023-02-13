@@ -7,10 +7,10 @@ services:
     ports:
       - 30000:3000
     environment:
-      REDMINE_DB_MYSQL: 192.168.0.181
+      REDMINE_DB_MYSQL: $IP
       REDMINE_DB_PORT: 3306
       REDMINE_DB_DATABASE: redminedb_001
-      REDMINE_DB_USERNAME: redmine_user
+      REDMINE_DB_USERNAME: redmine
       REDMINE_DB_PASSWORD: ruser
       REDMINE_DB_ENCODING: utf8
 #      REDMINE_NO_DB_MIGRATE: true
@@ -18,3 +18,6 @@ services:
 #      - /docker/redmine/files:/usr/src/redmine/files
 #      - /docker/redmine/plugins:/usr/src/redmine/plugins
 #      - /docker/redmine/public/themes:/usr/src/redmine/public/themes
+
+
+# mysql -h $IP -P 3306 -u redmine -p redminedb_001

@@ -10,7 +10,7 @@ services:
       - redminedb_net
     environment:
       REDMINE_DB_MYSQL: test_mariadb
-      REDMINE_DB_DATABASE: redminedb_001
+      REDMINE_DB_DATABASE: redminedb_test
       REDMINE_DB_PASSWORD: rroot
       REDMINE_DB_ENCODING: utf8
 #      REDMINE_NO_DB_MIGRATE: true
@@ -27,7 +27,7 @@ services:
     networks:
       - redminedb_net
     environment:
-      MARIADB_DATABASE: redminedb_001
+      MARIADB_DATABASE: redminedb_test
       MARIADB_ROOT_PASSWORD: rroot
     #volumes:
     #  - /docker/redmine/mysql:/var/lib/mysql

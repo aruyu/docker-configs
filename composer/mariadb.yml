@@ -7,6 +7,21 @@ services:
     ports:
       - 3306:3306
     environment:
+      MARIADB_DATABASE: redminedb_001
       MARIADB_ROOT_PASSWORD: rroot
     #volumes:
     #  - /docker/redmine/mysql:/var/lib/mysql
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+
+
+# mysql -u root -p << EOF
+#   use mysql;
+#   create user 'redmine'@'%' identified by 'ruser';
+#   GRANT ALL ON redminedb_001.* TO 'redmine'@'%';
+#   select host, user, password from user;
+#   FLUSH PRIVILEGES;
+#   exit;
+# EOF
