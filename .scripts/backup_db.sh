@@ -9,6 +9,7 @@
 #/
 
 
+
 IP=192.168.0.249
 PORT=3306
 DB_NAME=
@@ -17,16 +18,18 @@ DB_USER_PASSWORD=
 BACKUP_PATH=
 BACKUP_DATE=`date +%y%m%d_%H_%M`
 
-function backup_database()
-{
-  mysqldump -h $IP -P $PORT -u $DB_USER_NAME -p$DB_USER_PASSWORD $DB_NAME > $BACKUP_DATE.sql
-}
-
 function error_exit()
 {
   echo -ne "Error: $1\n\n"
   exit 1
 }
+
+function backup_database()
+{
+  mysqldump -h $IP -P $PORT -u $DB_USER_NAME -p$DB_USER_PASSWORD $DB_NAME > $BACKUP_DATE.sql
+}
+
+
 
 
 #==
