@@ -1,3 +1,3 @@
 version: '2.10.2'
 
-openldap.yml
+one-server.yml
