@@ -1,0 +1,22 @@
+
+services:
+
+  gitlab:
+    container_name: gitlab
+    hostname: wtlj-gitlab
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    ports:
+      - '8022:22'
+      - '8044:8044'
+      - '8081:8081'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://192.168.0.80:8081'
+        gitlab_rails['gitlab_shell_ssh_port'] = 8022
+        # Add any other gitlab.rb configuration here, each on its own line
+      TZ: 'Asia/Seoul'
+    volumes:
+      - '/var/gitlab/config:/etc/gitlab'
+      - '/var/gitlab/logs:/var/log/gitlab'
+      - '/var/gitlab/data:/var/opt/gitlab'
