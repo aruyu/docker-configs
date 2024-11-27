@@ -1,13 +1,13 @@
 
 services:
 
-  mariadb_ex01:
+  mariadb:
     image: mariadb
     restart: always
     ports:
       - 3306:3306
     environment:
-      MARIADB_DATABASE: redminedb_001
+      MARIADB_DATABASE: mariadb
       MARIADB_ROOT_PASSWORD: rroot
     #volumes:
     #  - /docker/redmine/mysql:/var/lib/mysql
