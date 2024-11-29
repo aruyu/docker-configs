@@ -1,0 +1,12 @@
+[Unit]
+Description=Backup GitlabDB Daemon
+
+[Service]
+Type=simple
+ExecStart=/usr/share/backupd/backupd
+ExecStop=
+User=root
+#Restart=always
+
+[Install]
+WantedBy=multi-user.target
