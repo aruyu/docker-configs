@@ -1,0 +1,82 @@
+
+services:
+
+  xmpp-web:
+    image: 'nioc/xmpp-web:latest'
+    container_name: solidwt-xmppweb
+    hostname: solidwt-xmppweb
+    restart: always
+    shm_size: 2G
+    ports:
+      - '9081:80'
+      # - '443:443'
+    environment:
+      - TZ=Asia/Seoul
+    #  - APP_NAME=SOLiDwt XMPP Web
+    #  # - APP_WS=ws://localhost/xmpp-websocket #default
+    #  - APP_REGISTERED_ACCESS=1 #1/0
+    #  - APP_GUEST_ACCESS=1 #1/0
+    #  - APP_IS_TRANSPORTS_USER_ALLOWED=1 #1/0
+    #  - APP_HTTP_AUTODISCOVERY=0 #1/0
+    #  - APP_RESOURCE=Web XMPP Docker latest
+      - APP_DEFAULT_DOMAIN=localhost #mandatory
+    #  - APP_DEFAULT_MUC=conference.localhost
+    #  - APP_IS_STYLING_DISABLED=0 #1/0
+    #  - APP_HAS_SENDING_ENTER_KEY=0 #1/0
+    #  - APP_PINNED_MUCS=['welcome@conference.localhost']
+    #  - XMPP_ANON_HOST=anon.localhost
+    #  - XMPP_CONNECT_TIMEOUT=10000
+      - XMPP_WS=http://localhost:7070 #mandatory, use XMPP service name as hostname
+    # volumes:
+    #   - ./certs:/etc/nginx/certs
+
+  openfire:
+    image: 'gizmotronic/openfire:latest'
+    container_name: solidwt-openfire
+    hostname: solidwt-openfire
+    restart: always
+    shm_size: 2G
+    ports:
+      - '9090:9090'
+      - '9091:9091'
+      - '5222:5222'
+      - '5223:5223'
+      - '5229:5229'
+      - '7070:7070'
+      - '7443:7443'
+      - '7777:7777'
+    environment:
+      TZ: 'Asia/Seoul'
+    #volumes:
+    #  - '/var/openfire/conf:/etc/openfire'
+    #  - '/var/openfire/logs:/var/log/openfire'
+    #  - '/var/openfire/data:/var/lib/openfire'
+
+  #prosody:
+  #  image: 'prosody/prosody:0.11.9'
+  #  container_name: solidwt-prosody
+  #  hostname: solidwt-prosody
+  #  restart: always
+  #  shm_size: 2G
+  #  ports:
+  #    - '5222:5222' # client to server connections
+  #    - '5280:5280' # HTTP (including websocket)
+  #    - '5000:5000' # file transfer proxy
+  #  networks:
+  #    - prosody_net
+  #  environment:
+  #    # the 3 following variables register admin@localhost, user1@localhost and user2@localhost users (password = JID local part)
+  #    LOCAL: 'admin'
+  #    PASSWORD: 'admin'
+  #    DOMAIN: 'localhost'
+  #  volumes:
+  #    - './prosody/data:/var/lib/prosody' # store Prosody data (ignored by git repo)
+  #    - './prosody/modules:/usr/lib/prosody/modules'
+  #    - './prosody.cfg.lua:/etc/prosody/prosody.cfg.lua:ro' # Prosody configuration
+  #    - './entrypoint.sh:/entrypoint.sh:ro' # added to register user1 and user2
+
+networks:
+
+  prosody_net:
+    driver: bridge
+    internal: true

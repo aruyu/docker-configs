@@ -1,0 +1,22 @@
+
+services:
+
+  openfire:
+    image: 'nasqueron/openfire:latest'
+    container_name: solidwt-openfire
+    hostname: solidwt-openfire
+    restart: always
+    shm_size: 2G
+    ports:
+      - '5222:5222'
+      - '7070:7070'
+      - '9090:9090'
+      - '7777:7777'
+    environment:
+      TZ: 'Asia/Seoul'
+    volumes:
+      #- '/var/openfire/conf:/var/lib/openfire/conf/'
+      - '/var/openfire/logs:/var/log/openfire/'
+      - '/var/openfire/data:/var/lib/openfire/embedded-db/'
+      - '/var/openfire/plugins:/var/lib/openfire/plugins/'
+      #- '/var/openfire/security:/var/lib/openfire/conf/security/'
