@@ -5,9 +5,11 @@ services:
     image: 'jupyter/datascience-notebook:notebook-7.0.6'
     container_name: jupyter-notebook
     hostname: jupyter-notebook
-    restart: always
     shm_size: 2G
     ports:
-      - '8888:8888'
+      - '18000:8888'
+    environment:
+      - GRANT_SUDO=yes
+      - JUPYTER_TOKEN=jovyan
     volumes:
       - /opt/jupyter:/home/jovyan/work
