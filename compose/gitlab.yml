@@ -3,8 +3,8 @@ services:
 
   gitlab:
     image: 'gitlab/gitlab-ce:latest'
-    container_name: solidwt-gitlab
-    hostname: solidwt-gitlab
+    container_name: example-gitlab
+    hostname: example-gitlab
     restart: always
     shm_size: 2G
     ports:
@@ -13,14 +13,13 @@ services:
     environment:
       TZ: 'Asia/Seoul'
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://solidwt.gitlab'
+        external_url 'http://example.gitlab'
         letsencrypt['enable'] = false
         nginx['redirect_http_to_https'] = false
         nginx['listen_https'] = false
         nginx['listen_port'] = 8081
         gitlab_rails['time_zone'] = 'Asia/Seoul'
         gitlab_rails['gitlab_shell_ssh_port'] = 8022
-        gitlab_rails['initial_root_password'] = root
     volumes:
       - '/var/gitlab/config:/etc/gitlab'
       - '/var/gitlab/logs:/var/log/gitlab'
