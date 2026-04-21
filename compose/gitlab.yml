@@ -24,3 +24,13 @@ services:
       - '/var/gitlab/config:/etc/gitlab'
       - '/var/gitlab/logs:/var/log/gitlab'
       - '/var/gitlab/data:/var/opt/gitlab'
+
+    deploy:
+      resources:
+        limits:
+          cpus: 0.5
+          memory: 4096M
+          memory-swap: 2048M
+        reservations:
+          cpus: 0.2
+          memory: 1024M
